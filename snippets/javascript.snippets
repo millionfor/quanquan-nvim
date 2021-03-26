@@ -1,8 +1,124 @@
+
+
+
+
+
+
+
+snippet deb "debugger"
+	debugger
+snippet try "try {} catch(e){  }"
+	try {
+		$SELECTION$
+	} catch(e) {
+		console.log(e)
+	}
+
+snippet ext "class InnerCtor extends xxx"
+	class InnerCtor extends ${0} {
+		${1}
+	}
+
+	export default new InnerCtor()
+
+snippet expd "export default"
+	export default ({a})=> {
+		${0}
+
+	}
+
+snippet expc "export class"
+	export class Fn${0} {
+		constructor ({a}) {
+			this.name = a
+		}
+		test(){
+			console.log(this.name)
+		}
+	}
+
+snippet deb "_.debounce(function(){  })"
+	_.debounce(function () {
+	  ${0}	
+	}, 300, {
+	'leading': false,
+	'trailing': true
+	})
+
+snippet pcss "$-prefix-cls: ''"
+	$-prefix-cls: "v-$TM_FILENAME_BASE";
+
+snippet pcs "const prefixCls = '${0}'"
+	const prefixCls = '${0}'
+
+snippet swc " switch case "
+	switch(${0}) {
+	  case 1:
+	    console.log(1) ${1}
+	    break;
+	  case 2:
+	    console.log(2)
+	    break;
+	  default:
+	    console.log(3)
+	}
+
+snippet rnp " return new Promise((resolve, reject) => {${0}) "
+	return new Promise((resolve, reject) => {
+		${0}
+	})
+
+snippet inner " class InnerCtor {  } "
+	const Inner = () => new InnerCtor()
+
+	class InnerCtor {
+	  constructor () {
+	    ${0}
+	  }
+
+	}
+
+	export default Inner()
+
+snippet ife " if(){ } else { } "
+	if (${0}) {
+  	${1}
+	} else {
+	  ${2}
+	}
+
+snippet cl " console.log(${0}) "
+	console.log(` ${0} `)
+
+snippet al " alert(${0}) "
+	alert(${0})
+
+snippet /p "/* @param {String} ${1} */"
+	/**
+	 * ${0}
+	 *
+	 * @param {String} ${1}
+	 */
+
+snippet //lts "/* eslint-disable */"
+	/* eslint-disable */
+
+snippet //lt "// eslint-disable-line"
+	// eslint-disable-line
+
+snippet // "/** quanquan **/"
+	/**
+	 * @fileName      $TM_FILENAME_BASE
+	 * @dateTime      $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND
+	 * @author        Millionfor <millionfor@gmail.com>
+	 * @description   ${0}
+	 */
+
 snippet test "import test"
-	import { assert } from './test';
+	import { assert } from './test'
 	console.log(
 		tests.every(test => assert(f1(test.$1), test.result))
-	);
+	)
 
 snippet un "undefined"
 	undefined
@@ -50,16 +166,14 @@ snippet wh "(condition) { ... }"
 snippet do "do { ... } while (condition)"
 	do {
 		${0:${VISUAL}}
-	} while (${1:/* condition */});
-
-snippet cl "console.log"
-	console.log(${0});
+	} while (${1:/* condition */})
 
 snippet const
-	const ${1} = ${0};
+	const ${1} = ${0}
 
 snippet let
-	let ${1} = ${0};
+	let ${1} = ${0}
 
 snippet im "import xyz from 'xyz'"
-	import ${1} from '${2:$1}';
+	import ${1} from '${2:$1}'
+

@@ -1,0 +1,141 @@
+extends html, javascript, css
+
+
+
+
+snippet vcd "computed: { },"
+	computed: { ${0} },
+
+snippet imm "deep: true, immediate: true, handler(){  } "
+	'${0}':{
+		 deep:true,
+		 immediate: true,
+		 handler(v){
+			 console.log(v)${1}
+		 }
+	 }
+
+snippet vcd "computed: { },"
+	computed: { ${0} },
+
+snippet vcp "components: { },"
+	components: { ${0} },
+
+snippet v3ts "vue + composition-api + ts"
+	<template>
+	  <div :class="classes">
+	    $TM_FILENAME_BASE
+	  </div>
+	</template>
+
+	<script lang="ts">
+	  import { defineComponent, computed } from '@nuxtjs/composition-api'
+
+	  const prefixCls = 'vi-$TM_FILENAME_BASE'
+
+	  export default defineComponent({
+	    fetchOnServer: false,
+	    middleware: 'auth',
+
+	    setup () {
+
+	      const classes = computed(() => {
+	        return [
+	          ``$0${ prefixCls }`
+	        ]
+	      })
+
+	      return { classes }
+	    },
+	  })
+	</script>
+	<style lang="scss" rel="stylesheet/scss">
+	  $-prefix-cls: "vi-$TM_FILENAME_BASE";
+	  .#{$-prefix-cls} {
+	  }
+	</style>
+
+
+snippet v3tsx "vue3 tsx template"
+	<template>
+	  <div :class="classes">
+	    $TM_FILENAME_BASE
+	  </div>
+	</template>
+
+	<script lang="tsx">
+	  import {Component, Emit, Inject, Model, Prop, Provide, Vue, Watch} from 'vue-property-decorator' // eslint-disable-line 
+
+	  const prefixCls = 'vi-$TM_FILENAME_BASE'
+
+	  @Component
+	  export default class $TM_FILENAME_BASE extends Vue {
+
+	    @Prop()
+	    propA: number = 1
+	    @Prop({ default: 'default value' })
+	    propB: string
+	    @Prop([String, Boolean])
+	    propC: string | boolean
+	    @Prop({ type: null })
+	    propD: any
+	    @Watch('child')
+	    onChildChanged(val: string, oldVal: string) { }
+	    name: '${NAME}'
+	    created () {}
+	    mounted () {}
+
+	    get classes () {
+	      return [
+	        ``$0${ prefixCls }`
+	      ]
+	    }
+	  }
+	</script>
+	<style lang="scss" rel="stylesheet/scss">
+	  $-prefix-cls: "vi-$TM_FILENAME_BASE";
+	  .#{$-prefix-cls} {
+	  }
+	</style>
+
+
+snippet v2 "vue2 template'"
+	<template>
+		<div :class="classes">
+	    $TM_FILENAME_BASE
+		</div>
+	</template>
+	<script>
+	const prefixCls = 'vi-$TM_FILENAME_BASE'
+	export default {
+	  name: "$TM_FILENAME_BASE",
+	  data () {
+	    return {}
+	  },
+	  props:{},
+	  methods:{},
+	  watch:{},
+	  beforeCreate(){},
+	  created(){},
+	  beforeMount(){},
+	  mounted(){},
+	  beforeUpdate(){},
+	  updated(){},
+	  beforeDestroy(){},
+	  destroyed(){},
+	  computed:{
+	    classes () {
+	      return [
+	        ``$0${ prefixCls }`
+	      ]
+	    }
+	  },
+	  components:{},
+	}
+	</script>
+
+	<style lang="scss" rel="stylesheet/scss">
+	  $-prefix-cls: "vi-$TM_FILENAME_BASE";
+	  .#{$-prefix-cls} {
+	  }
+	</style>

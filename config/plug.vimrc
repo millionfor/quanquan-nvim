@@ -17,7 +17,8 @@
             Plug 'yaocccc/vim-surround'
             Plug 'yaocccc/vim-comment'
             Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
+            Plug 'posva/vim-vue'
+            Plug 'scrooloose/syntastic'
         " vim 入口封面
             Plug 'mhinz/vim-startify'
         " NERDTree左侧树形目录
@@ -29,7 +30,12 @@
     call plug#end()
 
 " Plug Setting
+    " 自定义按键
+            nmap     <silent>       E         :call Tests("doHover")<cr>
 
+            func Tests()
+              call setline(1,"2222") 
+            endfunc
     " defx-icons 配置
             set encoding=UTF-8
     " scrooloose/nerdtree 设置目录树
@@ -65,12 +71,12 @@
             "\]
             "
             let g:startify_custom_header = [
-            \'  ____                     ____                      _____ _____  ______           ', 
-            \' / __ \                   / __ \                    |_   _|  __ \|  ____|   /\     ', 
-            \'| |  | |_   _  __ _ _ __ | |  | |_   _  __ _ _ __     | | | |  | | |__     /  \    ', 
-            \'| |  | | | | |/ _  |  _ \| |  | | | | |/ _  |  _ \    | | | |  | |  __|   / /\ \   ',
-            \'| |__| | |_| | (_| | | | | |__| | |_| | (_| | | | |  _| |_| |__| | |____ / ____ \  ',
-            \' \___\_\\__,_|\__,_|_| |_|\___\_\\__,_|\__,_|_| |_| |_____|_____/|______/_/    \_\ ',
+            \'                                              ____                     ____                      _____ _____  ______           ', 
+            \'                                             / __ \                   / __ \                    |_   _|  __ \|  ____|   /\     ', 
+            \'                                            | |  | |_   _  __ _ _ __ | |  | |_   _  __ _ _ __     | | | |  | | |__     /  \    ', 
+            \'                                            | |  | | | | |/ _  |  _ \| |  | | | | |/ _  |  _ \    | | | |  | |  __|   / /\ \   ',
+            \'                                            | |__| | |_| | (_| | | | | |__| | |_| | (_| | | | |  _| |_| |__| | |____ / ____ \  ',
+            \'                                             \___\_\\__,_|\__,_|_| |_|\___\_\\__,_|\__,_|_| |_| |_____|_____/|______/_/    \_\ ',
             \]
 
             let g:startify_custom_footer = [
@@ -160,34 +166,17 @@
 
     " fzf
         " maps
-            let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+            let g:fzf_preview_window = ['right:45%', 'ctrl-/']
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-            let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-            com! -bar -bang Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter=: --nth=4..'}, 'right'), <bang>0)
+            let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+            com! -bar -bang Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter=: --nth=4..'}, 'right:45%', 'ctrl-/'), <bang>0)
             nnoremap <silent>       <c-a>     :Ag<cr>
             nnoremap <silent>       <c-p>     :Files<cr>
             nnoremap <silent>       <c-h>     :History<cr>
             nnoremap <silent>       <c-l>     :BLines<cr>
             nnoremap <silent>       <c-g>     :GFiles?<cr>
-            
-        " fzf history c-n:next c-p:preview
-            let g:FZF_HISTORIES = get(g:, 'FZF_HISTORIES', [])
-            let g:FZF_HISTORY_INDEX = get(g:, 'FZF_HISTORY_INDEX', len(g:FZF_HISTORIES))
-            tnoremap <silent><expr> <cr>      &ft == "fzf" ? "<c-\><c-n>:call <SID>addFzfHistory(expand('<cWORD>'))<cr>i<cr>" : "<cr>"
-            tnoremap <silent><expr> <c-n>     &ft != "fzf" ? "<c-n>" : g:FZF_HISTORY_INDEX + 1 >= len(g:FZF_HISTORIES) ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(1)<cr>\"*pi"
-            tnoremap <silent><expr> <c-p>     &ft != "fzf" ? "<c-p>" : g:FZF_HISTORY_INDEX - 1 < 0 ? "" : "<c-u><c-\><c-n>:call <SID>getFzfHistory(-1)<cr>\"*pi"
-            fun! s:addFzfHistory(str)
-                let g:FZF_HISTORY_INDEX = len(g:FZF_HISTORIES)
-                if empty(a:str) == 1 || a:str =~ '╭─*╮' || a:str =~ '^.*>' | return | endif
-                if len(g:FZF_HISTORIES) && g:FZF_HISTORIES[-1] ==# a:str | return | endif
-                call add(g:FZF_HISTORIES, a:str)
-                if len(g:FZF_HISTORIES) > 10 | let g:FZF_HISTORIES = g:FZF_HISTORIES[-10:] | endif
-                let g:FZF_HISTORY_INDEX = len(g:FZF_HISTORIES)
-            endf
-            fun! s:getFzfHistory(delta)
-                let g:FZF_HISTORY_INDEX += a:delta
-                call setreg('*', g:FZF_HISTORIES[g:FZF_HISTORY_INDEX])
-            endf
+
+
 
     " 多游标
             let g:VM_theme                      = 'ocean'
@@ -225,7 +214,7 @@
     " yaocccc
         " line
             let g:vim_line_comments = { 'vim': '"', 'vimrc': '"',
-                                     \  'js': '//', 'ts': '//',
+                                     \  'js': '//', 'ts': '//', 'vue': '//',
                                      \  'java': '//', 'class': '//',
                                      \  'c': '//', 'h': '//',
                                      \  'go': '//' }

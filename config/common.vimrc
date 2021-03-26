@@ -3,8 +3,18 @@
     " 设置python3对应的目录，你可以手动 export PYTHON=$(which python3) 到你的终端配置中
         let mapleader="\\"
         let g:python3_host_prog = $PYTHON
+    " 自定义模板
+        " function! NewFile()
+        "     silent! 0r ~/.config/nvim/template/%:e.vim_template
+        "     s/vue/\=expand("%:t:r")
+        " endfunction
+        " autocmd BufNewFile * call NewFile()
+        autocmd BufNewFile * silent! 0r ~/.config/nvim/template/vue/%:e.vim_template
 
+        autocmd BufNewFile *.vue 0r ~/.config/nvim/template/vue/composition-api.vue
 " setting
+    " 模式行
+        set modeline
     " 设置命令提示 唯一标识 共享剪贴板
         set showcmd
         set encoding=utf-8
@@ -35,10 +45,11 @@
     " 不换行
         set nowrap
     " 缩进对齐
+        "set cinkeys=0{,0},:,0#,!<Tab>,!^F " emacs 风格的缩进模式并不是每次输入 <Enter> 都缩进，而是只在输入 <Tab> 时才缩进。对此，我建议使用: >
         set autoindent
         set smartindent
-        set tabstop=4
-        set softtabstop=4
+        set tabstop=2
+        set softtabstop=2
         set shiftwidth=2
         set smarttab
         set expandtab
