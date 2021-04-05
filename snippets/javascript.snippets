@@ -14,7 +14,15 @@ snippet try "try {} catch(e){  }"
 		console.log(e)
 	}
 
-snippet ext "class InnerCtor extends xxx"
+
+snippet ext "class InnerCtor "
+	class InnerCtor {
+		${0}
+	}
+
+	export default new InnerCtor()
+
+snippet exet "class InnerCtor extends xxx"
 	class InnerCtor extends ${0} {
 		${1}
 	}
@@ -88,16 +96,16 @@ snippet ife " if(){ } else { } "
 	}
 
 snippet cl " console.log(${0}) "
-	console.log(` ${0} `)
+	console.log(${0})
 
 snippet al " alert(${0}) "
 	alert(${0})
 
-snippet /p "/* @param {String} ${1} */"
+snippet param "/* @param {String} ${1} */"
 	/**
-	 * ${0}
+	 * ${1}
 	 *
-	 * @param {String} ${1}
+	 * @param {String} ${0}
 	 */
 
 snippet //lts "/* eslint-disable */"
@@ -122,11 +130,6 @@ snippet test "import test"
 
 snippet un "undefined"
 	undefined
-
-snippet if "if (condition) { ... }"
-	if (${1:true}) {
-		${0:${VISUAL}}
-	}
 
 snippet switch
 	switch (${1:expression}) {
@@ -154,8 +157,8 @@ snippet ret
 	return ${0:result};
 
 snippet for "for (...) {...}"
-	for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
-		${0:${VISUAL}}
+	for (var ${2:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
+		${1:${VISUAL}}
 	}
 
 snippet wh "(condition) { ... }"

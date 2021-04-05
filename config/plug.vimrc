@@ -36,6 +36,8 @@
             func Tests()
               call setline(1,"2222") 
             endfunc
+    "  " T快速向下打开一个终端
+           nnoremap T :below 10sp +term<cr>a
     " defx-icons 配置
             set encoding=UTF-8
     " scrooloose/nerdtree 设置目录树
