@@ -10,7 +10,7 @@
             Plug 'pangloss/vim-javascript', {'for': ['javascript', 'vim-plug']}
             Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm i'  }
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
-            Plug 'voldikss/vim-floaterm', { 'on': ['FloatermToggle'] }
+            Plug 'voldikss/vim-floaterm' 
             Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
             Plug 'junegunn/fzf.vim'
             Plug 'yaocccc/vim-lines'
@@ -19,6 +19,8 @@
             Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
             Plug 'posva/vim-vue'
             Plug 'scrooloose/syntastic'
+            Plug 'tpope/vim-dadbod'
+            Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
         " vim 入口封面
             Plug 'mhinz/vim-startify'
         " NERDTree左侧树形目录
@@ -162,10 +164,9 @@
             let g:floaterm_height = 0.5
             let g:floaterm_autoclose = 1
             hi! link FloatermBorder NONE
-            nnoremap <silent>       <c-t>     :try \| call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) \| endtry \| FloatermToggle<cr>
-            tnoremap <silent><expr> <c-t>     &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle<cr>" : "<c-t>"
+            nnoremap <silent>       <c-t>     :try \| call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) \| endtry \| FloatermToggle TERM<cr>
+            tnoremap <silent><expr> <c-t>     &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle TERM<cr>" : "<c-t>"
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif
-
     " fzf
         " maps
             let g:fzf_preview_window = ['right:45%', 'ctrl-/']
@@ -173,11 +174,40 @@
             let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
             com! -bar -bang Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter=: --nth=4..'}, 'right:45%', 'ctrl-/'), <bang>0)
             nnoremap <silent>       <c-a>     :Ag<cr>
-            nnoremap <silent>       <c-p>     :Files<cr>
+            nnoremap <silent>       <c-f>     :Files<cr>
             nnoremap <silent>       <c-h>     :History<cr>
             nnoremap <silent>       <c-l>     :BLines<cr>
             nnoremap <silent>       <c-g>     :GFiles?<cr>
 
+    " vim-dadbod
+        " let g:dbs = [{ 'name': 'connection_name', 'url': 'mysql://user:password@host:port' }]
+        let g:db_ui_save_location = '~/.config/zsh/cache'
+        let g:db_ui_use_nerd_fonts = 1
+        let g:db_ui_force_echo_notifications = 1
+        let g:db_ui_table_helpers = {
+        \   'mysql': {
+        \     'List': 'SELECT * from `{schema}`.`{table}` order by id desc LIMIT 100;',
+        \     'Indexes': 'SHOW INDEXES FROM `{schema}`.`{table}`;',
+        \     'Table Fields': 'DESCRIBE `{schema}`.`{table}`;',
+        \     'Alter Table': 'ALTER TABLE `{schema}`.`{table}` ADD '
+        \   }
+        \ }
+        let g:db_ui_locked = 0
+        com! CALLDB call DBUI()
+        func DBUI()
+            let g:db_ui_locked = 1
+            set laststatus=0 showtabline=0 nonu signcolumn=no nofoldenable
+            exec 'DBUI'
+        endf
+        func DBUIToggle()
+            if floaterm#terminal#get_bufnr('DBUI') < 0
+                exec 'FloatermNew --name=DBUI nvim +CALLDB'
+            else
+                exec 'FloatermToggle DBUI'
+            endif
+        endf
+        nnoremap <silent><expr> <c-b> g:db_ui_locked ? "" : ":call DBUIToggle()<CR>"
+        tnoremap <silent><expr> <c-b> &ft == "floaterm" ? "<c-\><c-n>:call DBUIToggle()<CR>" : "<c-b>"
 
 
     " 多游标

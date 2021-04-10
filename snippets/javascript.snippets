@@ -101,7 +101,40 @@ snippet cl " console.log(${0}) "
 snippet al " alert(${0}) "
 	alert(${0})
 
-snippet param "/* @param {String} ${1} */"
+snippet parr "@param {Array} xxx xxx "
+	@param {Array} ${1} ${0}
+
+snippet pobj "@param {Object} xxx xxx "
+	@param {Object} ${1} ${0}
+
+snippet pnum "@param {Number} xxx xxx "
+	@param {Number} ${1} ${0}
+
+snippet pstr "@param {String} xxx xxx "
+	@param {String} ${1} ${0}
+
+snippet parrp "/* @param {Array} */"
+	/**
+	 * ${1}
+	 *
+	 * @param {Array} ${0}
+	 */
+
+snippet pobjp "/* @param {Object} */"
+	/**
+	 * ${1}
+	 *
+	 * @param {Object} ${0}
+	 */
+
+snippet pnump "/* @param {Number} */"
+	/**
+	 * ${1}
+	 *
+	 * @param {Number} ${0}
+	 */
+
+snippet pstrp "/* @param {String} */"
 	/**
 	 * ${1}
 	 *
