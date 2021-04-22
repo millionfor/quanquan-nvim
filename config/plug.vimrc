@@ -21,6 +21,7 @@
             Plug 'scrooloose/syntastic'
             Plug 'tpope/vim-dadbod'
             Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
+            Plug 'ojroques/vim-oscyank'
         " vim 入口封面
             Plug 'mhinz/vim-startify'
         " NERDTree左侧树形目录
