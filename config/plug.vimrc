@@ -21,7 +21,7 @@
             Plug 'scrooloose/syntastic'
             Plug 'tpope/vim-dadbod'
             Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
-            Plug 'ojroques/vim-oscyank'
+            Plug 'ojroques/vim-oscyank', {'branch': 'main'}
         " vim 入口封面
             Plug 'mhinz/vim-startify'
         " NERDTree左侧树形目录
@@ -33,6 +33,11 @@
     call plug#end()
 
 " Plug Setting
+            vnoremap <leader>c :OSCYank<CR>
+            let g:oscyank_max_length = 1000000
+            autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+            autocmd TextYankPost * if v:event.operator is 'p' && v:event.regname is '+' | OSCYankReg + | endif
+
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
 
