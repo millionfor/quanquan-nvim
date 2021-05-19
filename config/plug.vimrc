@@ -38,6 +38,9 @@
             autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
             autocmd TextYankPost * if v:event.operator is 'p' && v:event.regname is '+' | OSCYankReg + | endif
 
+            autocmd FileType vue syntax sync fromstart
+            " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+            let g:vue_pre_processors = 'detect_on_enter'
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
 

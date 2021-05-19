@@ -178,6 +178,16 @@
             let l:down = line('.')
             exe 'norm! %'
         endif
+        if l:line[0] == ']'
+            exe 'norm! ^%'
+            let l:up = line('.')
+            exe 'norm! %'
+        endif
+        if l:line[len(l:line) - 1] == '['
+            exe 'norm! $%'
+            let l:down = line('.')
+            exe 'norm! %'
+        endif
         try
             if l:up != 0 && l:down != 0
                 exe 'norm! ' . l:up . 'GV' . l:down . 'Gzf'

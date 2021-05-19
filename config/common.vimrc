@@ -65,6 +65,8 @@
         set foldenable
         set foldmethod=manual
 
+        " au BufWinLeave * silent try | mkview   | endtry
+        " au BufWinEnter * silent try | loadview | endtry
 " show
     " 开启256颜色 暗色背景
         set background=dark
