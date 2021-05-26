@@ -42,9 +42,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 
 
-
-
-
 " def CamelToSneak(name: string): string
 "   var l = []
 "   var start = true
