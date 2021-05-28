@@ -30,6 +30,7 @@
             Plug 'ryanoasis/vim-devicons'
         " nerdtree 路径复制到剪切板
             Plug 'mortonfox/nerdtree-clip'
+            Plug 'yaocccc/vim-hlchunk'
     call plug#end()
 
 " Plug Setting
@@ -41,6 +42,10 @@
             autocmd FileType vue syntax sync fromstart
             " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
             let g:vue_pre_processors = 'detect_on_enter'
+
+            au VimEnter * hi IndentLineSign ctermfg=248
+            autocmd CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP *.ts,*.js,*.vue call HlChunk()
+
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
 
