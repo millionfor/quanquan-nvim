@@ -4,6 +4,7 @@
     "diagnostic.warningSign": "!",
     "vetur.ignoreProjectWarning": true,
     "vetur.validation.template": true,
+    "snippets.extends.typescript": ["javascript", "typescript","vue"],
     "snippets.extends.javascript": ["typescript","vue"],
     "snippets.extends.vue": ["html","javascript", "typescript", "css"],
     "diagnostic.infoSign": "!",

@@ -15,11 +15,13 @@ nnoremap <buffer><silent> = :.!js-beautify -s 2 --space-in-empty-paren --space-a
 " vnoremap <silent><buffer> C :<c-u>call SurroundVaddPairs('console.log(`[logger-' . printf(GET_TEXT()) . '] =>  `,' , ")")<cr>
 
 
-func CONSOLE_LOG()
-    let tag = getline(line("."))[col("'<") - 1 : col("'>") - 1]
-    call SurroundVaddPairs(printf('console.log(`[logger-%s] => `, ', tag), ')')
-endf
-
-vnoremap <silent><buffer> C :<c-u>call CONSOLE_LOG()<cr>
+"
+" func CONSOLE_LOG()
+"     let tag = getline(line("."))[col("'<") - 1 : col("'>") - 1]
+"     call SurroundVaddPairs(printf('console.log(`[logger-%s] => `, ', tag), ')')
+" endf
+" 
+" vnoremap <silent><buffer> C :<c-u>call CONSOLE_LOG()<cr>
+"
 
 
