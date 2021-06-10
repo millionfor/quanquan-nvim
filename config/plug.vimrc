@@ -15,7 +15,7 @@
             Plug 'junegunn/fzf.vim'
             Plug 'yaocccc/vim-lines'
             Plug 'yaocccc/vim-surround'
-            Plug 'yaocccc/vim-comment'
+            Plug 'millionfor/vim-comment'
             Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
             Plug 'posva/vim-vue'
             Plug 'scrooloose/syntastic'
@@ -291,17 +291,6 @@
               let info .= len(diff) ? printf('%s ', trim(diff)) : ''                
               return info            
             endf
-
-            " let g:line_statusline_enable = 1
-            " let g:line_tabline_enable = 1
-            " let g:line_tabline_show_pwd = 1
-            " let g:line_tabline_show_time = 0
-            " let g:line_modi_mark = '+'
-            " let g:line_pwd_suffix = '/'
-            " let g:line_unnamed_filename='~'
-            " let g:line_statusline_getters = ['CocErrCount', 'GitInfo']
-            " let g:CocErrCount = { -> printf(' E%d ', get(get(b:, 'coc_diagnostic_info', {}), 'error', 0)) }
-            " let g:GitInfo = { -> substitute(substitute(printf(' %s %s ', get(g:, 'coc_git_status', ''), get(b:, 'coc_git_status', '')), '\v\s{2,}', ' ', 'g'), '^\s*$', '', '') }
         " comment
             nnoremap <silent> ??           :NToggleComment<cr>
             vnoremap <silent> /       :<c-u>VToggleComment<cr>
