@@ -3,7 +3,9 @@ nnoremap <buffer><silent> = :.!js-beautify -s 2 --space-in-empty-paren --space-a
 
 func CONSOLE_LOG()
     let tag = getline(line("."))[col("'<") - 1 : col("'>") - 1]
-    call SurroundVaddPairs(printf('console.log(`[logger-%s] => `, ', tag), ')')
+    let l = line('.')
+    let space = substitute(getline(l), '\v(^\s*).*', '\1', '')
+    call appendbufline('%', line('.'), printf(space . 'console.log(`[logger-%s] => `, %s)', tag, tag)) 
 endf
 
 vnoremap <silent><buffer> C :<c-u>call CONSOLE_LOG()<cr>
