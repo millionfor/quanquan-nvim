@@ -191,7 +191,7 @@
         " maps
             let g:fzf_preview_window = ['right:45%', 'ctrl-/']
             let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-            let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+            let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
             com! -bar -bang Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter=: --nth=4..'}, 'right:45%', 'ctrl-/'), <bang>0)
             nnoremap <silent>       <c-a>     :Ag<cr>
             nnoremap <silent>       <c-f>     :Files<cr>
@@ -199,35 +199,38 @@
             nnoremap <silent>       <c-l>     :BLines<cr>
             nnoremap <silent>       <c-g>     :GFiles?<cr>
 
-    " vim-dadbod
-        " let g:dbs = [{ 'name': 'connection_name', 'url': 'mysql://user:password@host:port' }]
-        let g:db_ui_save_location = '~/.config/zsh/cache'
-        let g:db_ui_use_nerd_fonts = 1
-        let g:db_ui_force_echo_notifications = 1
-        let g:db_ui_table_helpers = {
-        \   'mysql': {
-        \     'List': 'SELECT * from `{schema}`.`{table}` order by id desc LIMIT 100;',
-        \     'Indexes': 'SHOW INDEXES FROM `{schema}`.`{table}`;',
-        \     'Table Fields': 'DESCRIBE `{schema}`.`{table}`;',
-        \     'Alter Table': 'ALTER TABLE `{schema}`.`{table}` ADD '
-        \   }
-        \ }
-        let g:db_ui_locked = 0
-        com! CALLDB call DBUI()
-        func DBUI()
-            let g:db_ui_locked = 1
-            set laststatus=0 showtabline=0 nonu signcolumn=no nofoldenable
-            exec 'DBUI'
-        endf
-        func DBUIToggle()
-            if floaterm#terminal#get_bufnr('DBUI') < 0
-                exec 'FloatermNew --name=DBUI nvim +CALLDB'
-            else
+
+        " vim-dadbod
+            " ctrl b 打开或者关闭数据库
+            " let g:dbs = [{ 'name': 'connection_name', 'url': 'mysql://user:password@host:port' }]
+            let g:db_ui_save_location = '~/.config/zsh/cache'
+            let g:db_ui_use_nerd_fonts = 1
+            let g:db_ui_force_echo_notifications = 1
+            let g:db_ui_table_helpers = {
+                  \   'mysql': {
+                  \     'List': 'SELECT * from `{schema}`.`{table}` order by id desc LIMIT 100;',
+                  \     'Indexes': 'SHOW INDEXES FROM `{schema}`.`{table}`;',
+                  \     'Table Fields': 'DESCRIBE `{schema}`.`{table}`;',
+                  \     'Alter Table': 'ALTER TABLE `{schema}`.`{table}` ADD '
+                  \   }
+                  \ }
+            let g:db_ui_locked = 0
+            com! CALLDB call DBUI()
+            func DBUI()
+              let g:db_ui_locked = 1
+              set laststatus=0 showtabline=0 nonu signcolumn=no nofoldenable
+              exec 'DBUI'
+            endf
+            func DBUIToggle()
+              if floaterm#terminal#get_bufnr('DBUI') < 0
+                exec 'FloatermNew --height=0.76 --position=bottom --name=DBUI --wintype=float nvim +CALLDB'
+              else
                 exec 'FloatermToggle DBUI'
-            endif
-        endf
-        nnoremap <silent><expr> <c-b> g:db_ui_locked ? "" : ":call DBUIToggle()<CR>"
-        tnoremap <silent><expr> <c-b> &ft == "floaterm" ? "<c-\><c-n>:call DBUIToggle()<CR>" : "<c-b>"
+              endif
+            endf
+            nnoremap <silent><expr> <c-b> g:db_ui_locked ? "" : ":call DBUIToggle()<CR>"
+            tnoremap <silent><expr> <c-b> &ft == "floaterm" ? "<c-\><c-n>:call DBUIToggle()<CR>" : "<c-b>"
+
 
 
     " 多游标
@@ -272,13 +275,41 @@
                                      \  'go': '//' }
 
 
-            let g:line_statusline_enable = 1
-            let g:line_tabline_enable = 1
-            let g:line_powerline_enable = 1
-            let g:line_tabline_show_pwd = 1
-            let g:line_modi_mark = '+'
-            let g:line_pwd_suffix = '/'
-            let g:line_unnamed_filename='~'            
+            "
+            " let g:line_statusline_enable = 1
+            " let g:line_tabline_enable = 1
+            " let g:line_nerdfont_enable = 1
+            " let g:line_powerline_enable = 1
+            " let g:line_tabline_show_pwd = 1
+            " let g:line_modi_mark = '+'
+            " let g:line_pwd_suffix = '/'
+            " let g:line_unnamed_filename='~'            
+            "
+            let g:line_statusline_enable = 1          
+            let g:line_tabline_enable = 1             
+            let g:line_powerline_enable = 1          
+            let g:line_nerdfont_enable = 1          
+            let g:line_tabline_show_pwd = 1        
+            let g:line_dclick_interval = 100      
+            let g:line_modi_mark = '+'           
+            let g:line_unnamed_filename = '[unnamed]'
+            let g:line_statusline_getters = []      
+            let g:line_mode_map = {"n": "NORMAL",  
+                  \  "v": "VISUAL",
+                  \  "V": "V-LINE",
+                  \  "\<c-v>": "V-CODE",
+                  \  "i": "INSERT",
+                  \  "R": "R",
+                  \  "r": "R",
+                  \  "Rv": "V-REPLACE",
+                  \  "c": "CMD-IN",
+                  \  "s": "SELECT",
+                  \  "S": "SELECT",
+                  \  "\<c-s>": "SELECT",
+                  \  "t": "TERMINAL"}
+            let g:line_hl = { 'none': 'NONE', 'light': '24', 'dark': '238', 'break': '244' } 
+            
+
             let g:line_statusline_getters = ['CocErrCount', 'GitInfo']            
             func! CocErrCount()                
               return printf(' E%d ', get(get(b:, 'coc_diagnostic_info', {}), 'error', 0))            
