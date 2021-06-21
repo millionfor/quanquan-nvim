@@ -44,7 +44,8 @@
             let g:vue_pre_processors = 'detect_on_enter'
 
             au VimEnter * hi IndentLineSign ctermfg=248
-            autocmd CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP *.ts,*.js,*.vue call HlChunk()
+            " hlchunk
+            autocmd CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP *.ts,*.js,*.go,*.c,*.json,*.vue call HlChunk()
 
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
@@ -274,17 +275,6 @@
                                      \  'c': '//', 'h': '//',
                                      \  'go': '//' }
 
-
-            "
-            " let g:line_statusline_enable = 1
-            " let g:line_tabline_enable = 1
-            " let g:line_nerdfont_enable = 1
-            " let g:line_powerline_enable = 1
-            " let g:line_tabline_show_pwd = 1
-            " let g:line_modi_mark = '+'
-            " let g:line_pwd_suffix = '/'
-            " let g:line_unnamed_filename='~'            
-            "
             let g:line_statusline_enable = 1          
             let g:line_tabline_enable = 1             
             let g:line_powerline_enable = 1          
