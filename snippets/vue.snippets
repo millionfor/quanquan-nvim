@@ -1,7 +1,8 @@
 extends html, javascript, css
 
 
-
+snippet vss "slot-scope="scope""
+	slot-scope="scope"	
 
 snippet vcd "computed: { },"
 	computed: { ${0} },
@@ -126,7 +127,7 @@ snippet v2 "vue2 template'"
 	  computed: {
 	    classes () {
 	      return [
-	        ``$0${prefixCls}`
+	        ``$0${ prefixCls }`
 	      ]
 	    }
 	  },
