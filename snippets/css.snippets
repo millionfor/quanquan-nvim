@@ -2,6 +2,18 @@
 
 
 
+snippet 3nc
+	&:nth-child(2) {
+		${0}
+	}
+snippet 3fc
+	&:first-child {
+		${0}
+	}
+snippet 3lc
+	&:last-child {
+		${0}
+	}
 snippet tdn 
 	text-decoration: none;${0}	
 snippet dib 
@@ -53,9 +65,7 @@ snippet vam
 snippet bgu
 	background:url('${0}') no-repeat;
 snippet bg
-	background: #${0};
-snippet bgf
-	background: #fff;${0}
+	background: #${1:fff};${0}
 snippet pf
 	position: fixed;${0}
 snippet pore
