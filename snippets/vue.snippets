@@ -1,5 +1,19 @@
 extends html, javascript, css
 
+<template>
+  <div :class="classes">
+    tag
+  </div>
+</template>
+
+snippet vtp "<template> hhhh </template>"
+	<template>
+		${0}
+	</template>
+snippet vtss "<template slot-scope="scope">"
+	<template slot-scope="scope">
+		${0}
+	</template>
 
 snippet vss "slot-scope="scope""
 	slot-scope="scope"	
