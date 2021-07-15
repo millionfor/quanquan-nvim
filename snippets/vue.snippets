@@ -24,10 +24,10 @@ snippet vcd "computed: { },"
 	computed: { ${0} },
 
 snippet imm "deep: true, immediate: true, handler(){  } "
-	'${0}':{
-		 deep:true,
+	'${0}': {
+		 deep: true,
 		 immediate: true,
-		 handler(v){
+		 handler(v) {
 			 console.log(v)${1}
 		 }
 	 }
@@ -115,6 +115,41 @@ snippet v3tsx "vue3 tsx template"
 	  }
 	</style>
 
+
+snippet v22 "vue2 simple template'"
+	<template>
+		<div :class="classes">
+	    $TM_FILENAME_BASE
+		</div>
+	</template>
+	<script>
+	const prefixCls = 'vi-$TM_FILENAME_BASE'
+	export default {
+	  name: '$TM_FILENAME_BASE',
+	  data() {
+	    return {}
+	  },
+	  props: {},
+	  methods: {},
+	  watch: {},
+	  created() {},
+	  mounted() {},
+	  computed: {
+	    classes() {
+	      return [
+	        ``$0${ prefixCls }`
+	      ]
+	    }
+	  },
+	  components: {}
+	}
+	</script>
+
+	<style lang="scss" rel="stylesheet/scss">
+	  $-prefix-cls: 'vi-$TM_FILENAME_BASE';
+	  .#{$-prefix-cls} {
+	  }
+	</style>
 
 snippet v2 "vue2 template'"
 	<template>
