@@ -58,3 +58,13 @@ if &diff
   map <leader>3 :diffget REMOTE<CR>
 endif
 " }}}
+
+
+
+" Format the statusline
+set statusline=\ %m%r%h%w<%r%{__get_cur_dir()}%h>\%=\[%{&ft},%{&ff},%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ [%l,%v,0x%B\/%L,%p%%]
+fun! __get_cur_dir()
+  let p = substitute(getcwd(), fnameescape($HOME), "~", "g")
+  let f = expand("%f")
+  return p . "/" . f
+endfun
