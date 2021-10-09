@@ -31,6 +31,12 @@
         " nerdtree 路径复制到剪切板
             Plug 'mortonfox/nerdtree-clip'
             Plug 'yaocccc/vim-hlchunk'
+
+        " jsx 支持    
+            Plug 'HerringtonDarkholme/yats.vim'
+            " or Plug 'leafgarland/typescript-vim'
+            Plug 'maxmellon/vim-jsx-pretty'
+
     call plug#end()
 
 " Plug Setting

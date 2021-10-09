@@ -56,12 +56,9 @@ snippet expc "export class"
 	}
 
 snippet deb "_.debounce(function(){  })"
-	_.debounce(function () {
-	  ${0}	
-	}, 300, {
-	'leading': false,
-	'trailing': true
-	})
+_.debounce(function () {
+	${0}	
+}, 300, { 'leading': false, 'trailing': true }),
 
 snippet pcss "$-prefix-cls: ''"
 	$-prefix-cls: "v-$TM_FILENAME_BASE";
