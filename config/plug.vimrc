@@ -50,8 +50,6 @@
             let g:vue_pre_processors = 'detect_on_enter'
 
             au VimEnter * hi IndentLineSign ctermfg=248
-            " hlchunk
-            autocmd CursorMoved,CursorMovedI,TextChanged,TextChangedI,TextChangedP *.ts,*.js,*.go,*.c,*.json,*.vue call HlChunk()
 
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
