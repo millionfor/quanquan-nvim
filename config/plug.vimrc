@@ -184,14 +184,31 @@
             nnoremap <silent>       N         :call WordNavigation('backward')<cr>
 
     " Floaterm
+
+    " floaterm
+            au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif
             let g:floaterm_title = ''
             let g:floaterm_width = 0.8
-            let g:floaterm_height = 0.5
+            let g:floaterm_height = 0.8
             let g:floaterm_autoclose = 1
+            let g:floaterm_opener = 'edit'
             hi! link FloatermBorder NONE
-            nnoremap <silent>       <c-t>     :try \| call system("~/scripts/edit-profile.sh VIM_TEM_DIR ".$PWD) \| endtry \| FloatermToggle TERM<cr>
-            tnoremap <silent><expr> <c-t>     &ft == "floaterm" ? "<c-\><c-n>:FloatermToggle TERM<cr>" : "<c-t>"
-            au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif
+        " floaterm toggle by name and cmd
+            func FTToggle(name, cmd, pre_cmd) abort
+                if floaterm#terminal#get_bufnr(a:name) != -1
+                    exec 'FloatermToggle ' . a:name
+                else
+                    exec a:pre_cmd
+                    exec printf('FloatermNew --name=%s %s', a:name, a:cmd)
+                endif
+            endf
+            nnoremap <silent>   <c-t> :call FTToggle('TERM', '', "try \| call system('~/scripts/edit-profile.sh VIM_TEM_DIR " . $PWD . "') \| endtry")<cr>
+            nnoremap <silent>   <c-b> :call FTToggle('DBUI', 'nvim +CALLDB', '')<cr>
+            nnoremap <silent>   T     :call FTToggle('RANGER', 'ranger', '')<cr>
+            tmap <silent><expr> <c-t> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('TERM') == bufnr('%') ? '' : '<c-t>') : "<c-t>"
+            tmap <silent><expr> <c-b> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('DBUI') == bufnr('%') ? '' : '<c-b>') : "<c-b>"
+            tmap <silent><expr> T     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('RANGER') == bufnr('%') ? '' : 'T') : "T"
+
     " fzf
         " maps
             let g:fzf_preview_window = ['right:45%', 'ctrl-/']
@@ -320,7 +337,6 @@
             nnoremap <silent> ??           :NToggleComment<cr>
             vnoremap <silent> /       :<c-u>VToggleComment<cr>
             vnoremap <silent> ?       :<c-u>CToggleComment<cr>
-
 
 " some hook
 " cd ~/.config/coc/extensions/node_modules/coc-ccls
