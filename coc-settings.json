@@ -6,7 +6,7 @@
     "vetur.validation.template": true,
     "snippets.extends.typescript": ["javascript", "typescript","vue"],
     "snippets.extends.javascript": ["typescript","vue"],
-    "snippets.extends.vue": ["html","javascript", "typescript", "css"],
+    "snippets.extends.scss": ["css", "scss"],
     "diagnostic.infoSign": "!",
     "diagnostic.hintSign": "!",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
