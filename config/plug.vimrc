@@ -38,8 +38,6 @@
             Plug 'maxmellon/vim-jsx-pretty'
         " 智能写代码超级插件 让我退休得玩意    
             Plug 'github/copilot.vim', {'branch': 'release'}
-
-
             imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
             let g:copilot_no_tab_map = v:true
 
@@ -91,14 +89,6 @@
             \ '^/tmp',
             \ ]
             "自定义Header和Footer
-            "let g:startify_custom_header = [
-            "\ '+------------------------------+',
-            "\ '|                              |',
-            "\ '|    Still waters run deep!    |',
-            "\ '|                              |',
-            "\ '+----------------+-------------+',
-            "\]
-            "
             let g:startify_custom_header = [
             \'                                                   ____                     ____                      _____ _____  ______           ', 
             \'                               █████              / __ \                   / __ \                    |_   _|  __ \|  ____|   /\     ', 
@@ -111,15 +101,6 @@
             \'                                ░   ░            |          圈圈(@millionfor) <millionfor@apache.org> wwww.quanquansy.com           |',
             \'                                 ░               +---------------------------------------------------------------------------------+',
             \]
-
-            "
-            " let g:startify_custom_footer = [
-            " \      '+------------------------------------+',
-            " \      '|    圈圈摄影 wwww.quanquansy.com    |',
-            " \      '+----------------+-------------------+',
-            " \]
-            "
-
 
     " coc-vim
         " 插件列表

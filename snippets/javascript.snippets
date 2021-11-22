@@ -156,11 +156,24 @@ snippet eslint "// eslint-disable-line"
 
 snippet // "/** quanquan **/"
 	/**
-	 * @fileName      $TM_FILENAME_BASE
-	 * @dateTime      $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND <$CURRENT_DAY_NAME>
-	 * @author        QuanQuan <millionfor@apache.org>
-	 * @description   ${0}
+	 * @File Name       $TM_FILENAME_BASE
+	 * @Created Time    $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND <$CURRENT_DAY_NAME>
+	 * @Last Modified:  $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND <$CURRENT_DAY_NAME>
+	 * @Author          QuanQuan <millionfor@apache.org>
+	 * @Description     ${0}
 	 */
+
+snippet //node "#!/usr/bin/env"
+${0:#}!/usr/bin/env node
+/**
+ * ${1: test}
+ *
+ * Created Time    $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND <$CURRENT_DAY_NAME>
+ * Last Modified:  $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND <$CURRENT_DAY_NAME>
+ *
+ * Authors:
+ *   QuanQuan <millionfor@apache.org>
+ */
 
 snippet test "import test"
 	import { assert } from './test'
