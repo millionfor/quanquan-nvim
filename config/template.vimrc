@@ -1,8 +1,8 @@
 autocmd BufNewFile *.vue,*.js,*.ts,*.sh,*.css call SetTitle()
 autocmd BufWritePre *.vue,*.js,*.ts,*.sh,*.css call SetLastModified()
 
-let s:getCreatedTimeStr =  {->printf(' * @createdTime    %s', strftime("%a, %b %d, %Y %R"))}
-let s:getModifiedTimeStr = {->printf(' * @lastModified   %s', strftime("%a, %b %d, %Y %R"))}
+let s:getCreatedTimeStr =  {->printf(' * @createdTime     %s', strftime("%a, %b %d, %Y %R"))}
+let s:getModifiedTimeStr = {->printf(' * @lastModified    %s', strftime("%a, %b %d, %Y %R"))}
 
 func s:getTemplete(type)
     let templates = {
@@ -43,29 +43,29 @@ func s:getTemplete(type)
         \],
         \'javascript': [
         \    "/**",
-        \    " * @fileName       ".expand("%:t:r"),
+        \    " * @fileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author         QuanQuan <millionfor@apache.org>",
-        \    " * @description    x",
+        \    " * @author          QuanQuan <millionfor@apache.org>",
+        \    " * @description     x",
         \    " */",
         \],
         \'typescript': [
         \    "/**",
-        \    " * @fileName       ".expand("%:t:r"),
+        \    " * @fileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author         QuanQuan <millionfor@apache.org>",
-        \    " * @description    x",
+        \    " * @author          QuanQuan <millionfor@apache.org>",
+        \    " * @description     x",
         \    " */",
         \],
         \'default': [
         \    "/**",
-        \    " * @fileName       ".expand("%:t:r"),
+        \    " * @fileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author         QuanQuan <millionfor@apache.org>",
-        \    " * @description    x",
+        \    " * @author          QuanQuan <millionfor@apache.org>",
+        \    " * @description     x",
         \    " */",
         \],
         \}
