@@ -6,7 +6,7 @@
     "vetur.validation.template": true,
     "snippets.extends.typescript": ["javascript"],
     "snippets.extends.javascript": ["typescript"],
-    "snippets.extends.vue": ["javascript", "scss"],
+    "snippets.extends.vue": ["javascript", "sass", "css", "html"],
     "snippets.extends.sass": ["css", "sass"],
     "diagnostic.infoSign": "!",
     "diagnostic.hintSign": "!",

@@ -1,4 +1,6 @@
 " common
+set langmenu=en_US.UTF-8
+
     " 设置leader为\
     " 设置python3对应的目录，你可以手动 export PYTHON=$(which python3) 到你的终端配置中
         let mapleader="\\"
@@ -93,6 +95,7 @@
     " 总是开启 statusline & tabline
         set laststatus=2
         set showtabline=2
+        set textwidth=200
 
 " 文件格式默认        
         au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set tabstop=2
