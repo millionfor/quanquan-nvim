@@ -17,7 +17,7 @@
             Plug 'yaocccc/vim-surround'
             Plug 'millionfor/vim-comment'
             Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-            Plug 'posva/vim-vue'
+            Plug 'posva/vim-vue', { 'for': ['vue' ] }
             Plug 'scrooloose/syntastic'
             Plug 'tpope/vim-dadbod'
             Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
@@ -40,6 +40,10 @@
             Plug 'github/copilot.vim', {'branch': 'release'}
             imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
             let g:copilot_no_tab_map = v:true
+
+            " Treesitter
+            Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+            Plug 'nvim-treesitter/playground'
 
     call plug#end()
 
