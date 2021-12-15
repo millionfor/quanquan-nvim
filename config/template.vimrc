@@ -1,8 +1,8 @@
 autocmd BufNewFile *.vue,*.js,*.ts,*.sh,*.css call SetTitle()
 autocmd BufWritePre *.vue,*.js,*.ts,*.sh,*.css call SetLastModified()
 
-let s:getCreatedTimeStr =  {->printf(' * @createdTime     %s', strftime("%a, %b %d, %Y %R"))}
-let s:getModifiedTimeStr = {->printf(' * @lastModified    %s', strftime("%a, %b %d, %Y %R"))}
+let s:getCreatedTimeStr =  {->printf(' * @CreatedTime     %s', strftime("%a, %b %d, %Y %R"))}
+let s:getModifiedTimeStr = {->printf(' * @LastModified    %s', strftime("%a, %b %d, %Y %R"))}
 
 func s:getTemplete(type)
     let templates = {
@@ -43,29 +43,29 @@ func s:getTemplete(type)
         \],
         \'javascript': [
         \    "/**",
-        \    " * @fileName        ".expand("%:t:r"),
+        \    " * @FileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author          QuanQuan <millionfor@apache.org>",
-        \    " * @description     x",
+        \    " * @Author          QuanQuan <millionfor@apache.org>",
+        \    " * @Description     x",
         \    " */",
         \],
         \'typescript': [
         \    "/**",
-        \    " * @fileName        ".expand("%:t:r"),
+        \    " * @FileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author          QuanQuan <millionfor@apache.org>",
-        \    " * @description     x",
+        \    " * @Author          QuanQuan <millionfor@apache.org>",
+        \    " * @Description     x",
         \    " */",
         \],
         \'default': [
         \    "/**",
-        \    " * @fileName        ".expand("%:t:r"),
+        \    " * @FileName        ".expand("%:t:r"),
         \    s:getCreatedTimeStr(),
         \    s:getModifiedTimeStr(),
-        \    " * @author          QuanQuan <millionfor@apache.org>",
-        \    " * @description     x",
+        \    " * @Author          QuanQuan <millionfor@apache.org>",
+        \    " * @Description     x",
         \    " */",
         \],
         \}
@@ -80,7 +80,7 @@ endf
 
 func SetLastModified()
     for n in range(10)
-        if getline(n) =~ '^\s*\*\s*@lastModified\s*\S*.*$'
+        if getline(n) =~ '^\s*\*\s*@LastModified\s*\S*.*$'
             call setline(n, s:getModifiedTimeStr())
             return
         endif
