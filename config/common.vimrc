@@ -3,7 +3,7 @@ set langmenu=en_US.UTF-8
 
     " 设置leader为\
     " 设置python3对应的目录，你可以手动 export PYTHON=$(which python3) 到你的终端配置中
-        let mapleader="\\"
+        let mapleader=","
         let g:python3_host_prog = $PYTHON
     " 自定义模板
         " function! NewFile()

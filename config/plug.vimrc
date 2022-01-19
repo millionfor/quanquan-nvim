@@ -31,7 +31,9 @@
         " nerdtree 路径复制到剪切板
             Plug 'mortonfox/nerdtree-clip'
             Plug 'yaocccc/vim-hlchunk'
-
+        " 注释插件
+            Plug 'scrooloose/nerdcommenter'
+            
         " jsx 支持    
             Plug 'HerringtonDarkholme/yats.vim'
             " or Plug 'leafgarland/typescript-vim'
@@ -44,10 +46,47 @@
             " Treesitter
             Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
             Plug 'nvim-treesitter/playground'
+        " gist vim
+            Plug 'mattn/webapi-vim'
+            Plug 'mattn/vim-gist'
+
 
     call plug#end()
 
 " Plug Setting
+    " scrooloose/nerdcommenter
+              " Create default mappings
+            let g:NERDCreateDefaultMappings = 1
+
+            " Add spaces after comment delimiters by default
+            let g:NERDSpaceDelims = 1
+
+            " Use compact syntax for prettified multi-line comments
+            let g:NERDCompactSexyComs = 1
+
+            " Align line-wise comment delimiters flush left instead of following code indentation
+            let g:NERDDefaultAlign = 'left'
+
+            " Set a language to use its alternate delimiters by default
+            let g:NERDAltDelims_java = 1
+
+            " Add your own custom formats or override the defaults
+            let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+            " Allow commenting and inverting empty lines (useful when commenting a region)
+            let g:NERDCommentEmptyLines = 1
+
+            " Enable trimming of trailing whitespace when uncommenting
+            let g:NERDTrimTrailingWhitespace = 1
+
+            " Enable NERDCommenterToggle to check all selected lines is commented or not 
+            let g:NERDToggleCheckAllLines = 1
+    " gist vim
+            let g:gist_clip_command = 'pbcopy'
+            let g:github_user = 'millionfor'
+            let g:gist_token = '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'
+            let g:gist_per_page_limit = 100
+
             vnoremap <leader>c :OSCYank<CR>
             let g:oscyank_max_length = 1000000
             autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
@@ -334,3 +373,4 @@
 " ln -s node_modules/ws/lib lib
 " sudo pacman -S the_silver_searcher fd bat
 " npm i js-beautify -g
+
