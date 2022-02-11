@@ -40,8 +40,6 @@
             Plug 'maxmellon/vim-jsx-pretty'
         " 智能写代码超级插件 让我退休得玩意    
             Plug 'github/copilot.vim', {'branch': 'release'}
-            imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-            let g:copilot_no_tab_map = v:true
 
             " Treesitter
             Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -52,8 +50,10 @@
 
 
     call plug#end()
-
 " Plug Setting
+    " github/copilot.vim
+            let g:copilot_no_tab_map = v:true
+            imap <silent><script><expr> <Right> copilot#Accept("\\<Right>")
     " scrooloose/nerdcommenter
               " Create default mappings
             let g:NERDCreateDefaultMappings = 1
