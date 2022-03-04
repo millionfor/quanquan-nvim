@@ -129,6 +129,11 @@
         nnoremap <silent><expr> W   ":bd \|call SetTabline()<cr>"
         nnoremap <silent><expr> sd   ":bd \|call SetTabline()<cr>"
 
+        fun! s:SetTabline()
+          exec "w"
+        endf
+
+
 " 一键运行文件
     command! Run  call <SID>runFile()
     noremap  <F5> :Run<cr>
@@ -202,6 +207,24 @@
             redraw!
         endtry
     endf
+
+    " 持久化撤销
+        set undofile
+        set undodir=~/.config/nvim/cache/undodir
+    " 折叠
+        set foldenable
+        set foldmethod=manual
+        set viewdir=~/.config/nvim/cache/viewdir
+        au BufWritePost * mkview
+        au BufWinEnter * call s:ldview()
+        func s:ldview()
+          let file = expand("%:p")
+          if file == "" | return | endif
+          let file = substitute(file, $HOME, "~", "g")
+          let file = substitute(file, "/", "=+", "g")
+          let file = printf("%s/%s=", &viewdir, file)
+          if filereadable(file) | loadview | endif
+        endf
 
 " space 行首行尾切换
     nnoremap <silent> <space> :call <SID>move()<cr>

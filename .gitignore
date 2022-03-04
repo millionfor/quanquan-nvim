@@ -5,6 +5,7 @@ file_logs/
 plugged/
 logs/
 log/
+cache/
 *.log
 **/dump.rdb
 **/.DS_Store

@@ -62,11 +62,13 @@ set langmenu=en_US.UTF-8
         set undofile
         set undodir=~/.config/nvim/file_logs
     " 折叠
-        set foldenable
-        set foldmethod=manual
+        " set foldenable
+        " set foldmethod=manual
+        " set foldmethod=indent
+        " set foldmethod=marker
 
-        " au BufWinLeave * silent try | mkview   | endtry
-        " au BufWinEnter * silent try | loadview | endtry
+        " au BufWinLeave .vimrc silent try | mkview   | endtry
+        " au BufWinEnter .vimrc silent try | loadview | endtry
 " show
     " 开启256颜色 暗色背景
         set background=dark
