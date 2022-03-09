@@ -74,7 +74,29 @@ snippet vcd "computed: { },"
 snippet vcp "components: { },"
 	components: { ${0} },
 
-snippet v3ts "vue + composition-api + ts"
+snippet v3tss "vue3 typescript setup"
+<template>
+  <div :class="classes">
+    $TM_FILENAME_BASE
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { computed } from 'vue';
+
+  const prefixCls = 'vi-$TM_FILENAME_BASE'
+  const classes = computed(() => { return [``$0${ prefixCls }`] })
+
+</script>
+<style lang="scss" >
+  $-prefix-cls: 'vi-$TM_FILENAME_BASE';
+  .#{$-prefix-cls} {
+  }
+</style>
+<!-- vim: set ft=vue ff=unix et sw=2 ts=2 sts=2 tw=150: -->
+
+
+snippet v3tsn "vue + composition-api + ts"
 	<template>
 	  <div :class="classes">
 	    $TM_FILENAME_BASE

@@ -1,5 +1,5 @@
-vnoremap <buffer><silent> = :!js-beautify -s 2 --space-in-empty-paren --space-after-anon-function -b collapse<cr>
-nnoremap <buffer><silent> = :.!js-beautify -s 2 --space-in-empty-paren --space-after-anon-function -b collapse<cr>
+vnoremap <buffer><silent> = :!js-beautify -s 2 --space-in-paren --space-in-empty-paren --space-after-anon-function -b collapse,preserve-inline<cr>
+nnoremap <buffer><silent> = :.!js-beautify -s 2 --space-in-paren --space-in-empty-paren --space-after-anon-function -b collapse,preserve-inline<cr>
 
 
 vnoremap <silent><buffer> C :<c-u>call <SID>console()<cr>
