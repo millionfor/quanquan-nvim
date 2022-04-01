@@ -47,6 +47,8 @@
         " gist vim
             Plug 'mattn/webapi-vim'
             Plug 'mattn/vim-gist'
+        " 压缩
+            Plug 'Shadowsith/vim-minify'
 
 
     call plug#end()
@@ -100,6 +102,19 @@
 
             au VimEnter * hi IndentLineSign ctermfg=248
 
+      " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
+            let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c,*.vue'
+          " 缩进线的高亮
+            au VimEnter * hi HLIndentLine ctermfg=244
+          " 延时 默认为50
+            let g:hlchunk_time_delay = 50
+          " 高亮线符号(逆时针) 默认为 ['─', '─', '╭', '│', '╰', '─', '>']
+            let g:hlchunk_chars=['─', '─', '╭', '│', '╰', '─', '>']
+          " 最大支持行数 默认3000(超过5000行的文件不使用hlchunk)
+            let g:hlchunk_line_limit = 5000
+          " 最大支持列数 默认100(超过500列的文件不使用hlchunk)
+            let g:hlchunk_col_limit = 500
+
     " 自定义按键
             nmap     <silent>       E         :call Tests("doHover")<cr>
 
@@ -107,7 +122,7 @@
               call setline(1,"2222") 
             endfunc
     "  " T快速向下打开一个终端
-           nnoremap F :below 10sp +term<cr>a
+           " nnoremap F :below 10sp +term<cr>a
     " defx-icons 配置
             set encoding=UTF-8
     " scrooloose/nerdtree 设置目录树
@@ -236,11 +251,11 @@
             endf
             nnoremap <silent>   <c-t> :call FTToggle('TERM', '', "try \| call system('~/scripts/edit-profile.sh VIM_TEM_DIR " . $PWD . "') \| endtry")<cr>
             nnoremap <silent>   <c-b> :call FTToggle('DBUI', 'nvim +CALLDB', '')<cr>
-            nnoremap <silent>   T     :call FTToggle('RANGER', 'ranger', '')<cr>
+            nnoremap <silent>   F     :call FTToggle('RANGER', 'ranger', '')<cr>
             nnoremap <silent>   G     :call FTToggle('LAZYGIT', 'lazygit', '')<cr>
             tmap <silent><expr> <c-t> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('TERM') == bufnr('%') ? '' : '<c-t>') : "<c-t>"
             tmap <silent><expr> <c-b> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('DBUI') == bufnr('%') ? '' : '<c-b>') : "<c-b>"
-            tmap <silent><expr> T     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('RANGER') == bufnr('%') ? '' : 'T') : "T"
+            tmap <silent><expr> F     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('RANGER') == bufnr('%') ? '' : 'F') : "F"
             tmap <silent><expr> G     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('LAZYGIT') == bufnr('%') ? '' : 'G') : "G"
 
     " fzf

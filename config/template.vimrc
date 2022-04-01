@@ -39,7 +39,7 @@ func s:getTemplete(type)
         \    ".#{$-prefix-cls} {",
         \    "}",
         \    "</style>",
-        \    "<!-- vim: set ft=vue ff=unix et sw=2 ts=2 sts=2 tw=150: -->",
+        \    "<!-- vim: set ft=vue ff=unix et sw=2 ts=2 sts=2 tw=300: -->",
         \],
         \'javascript': [
         \    "/**",

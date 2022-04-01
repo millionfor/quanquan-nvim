@@ -13,6 +13,9 @@ set langmenu=en_US.UTF-8
         " autocmd BufNewFile * call NewFile()
         autocmd BufNewFile * silent! 0r ~/.config/nvim/template/vue/%:e.vim_template
 " setting
+    " 搜索完按esc去掉高亮
+        nnoremap <esc><esc> :nohl<cr>
+        " nnoremap <esc> :nohl<cr>
     " 模式行
         set modeline
     " 设置命令提示 唯一标识 共享剪贴板
@@ -97,7 +100,8 @@ set langmenu=en_US.UTF-8
     " 总是开启 statusline & tabline
         set laststatus=2
         set showtabline=2
-        set textwidth=200
+        set textwidth=1000
+        set nowrap
 
 " 文件格式默认        
         au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set tabstop=2

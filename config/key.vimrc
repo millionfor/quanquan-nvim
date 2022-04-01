@@ -212,21 +212,21 @@
         set undofile
         set undodir=~/.config/nvim/cache/undodir
     " 折叠
-        set foldenable
-        set foldmethod=manual
-        set viewdir=~/.config/nvim/cache/viewdir
-        au BufWritePost * mkview
-        au BufWinEnter * call s:ldview()
-        func s:ldview()
-          let file = expand("%:p")
-          if file == "" | return | endif
-          let file = substitute(file, $HOME, "~", "g")
-          let file = substitute(file, "/", "=+", "g")
-          let file = printf("%s/%s=", &viewdir, file)
-          if filereadable(file) | loadview | endif
-        endf
+        " set foldenable
+        " set foldmethod=manual
+        " set viewdir=~/.config/nvim/cache/viewdir
+        " au BufWritePost * mkview
+        " au BufWinEnter * call s:ldview()
+        " func s:ldview()
+        "   let file = expand("%:p")
+        "   if file == "" | return | endif
+        "   let file = substitute(file, $HOME, "~", "g")
+        "   let file = substitute(file, "/", "=+", "g")
+        "   let file = printf("%s/%s=", &viewdir, file)
+        "   if filereadable(file) | loadview | endif
+        " endf
 
-" space 行首行尾切换
+  " space 行首行尾切换
     nnoremap <silent> <space> :call <SID>move()<cr>
     nnoremap 0 %
     vnoremap 0 %
@@ -240,3 +240,21 @@
             exe 'norm! 0'
         endif
     endf
+
+    command! Run1  call <SID>runFile1(line("'<"), line("'>"))
+    noremap  <F10> :Run1<cr>
+    inoremap <F10> <ESC>:Run1<cr>
+    fun! s:runFile1(num1, num2)
+      echo num1 + num2
+    endf
+    
+    vnoremap <silent><buffer> P :<c-u>call <SID>getss()<cr>
+    fun! s:getss()
+      let begin = searchpos('\(\%V\@<!.\|^\)\%V', 'nw')
+      let end = searchpos('\%V.\%V\@!', 'nw')
+      if begin[0] == end[0]
+        let line = getline('.')
+        echo strpart(line, begin[1], end[1]-begin[1])
+      endif
+      return ''
+    endfun
