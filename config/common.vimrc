@@ -104,12 +104,12 @@ set langmenu=en_US.UTF-8
         set nowrap
 
 " 文件格式默认        
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set tabstop=2
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set softtabstop=2
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set shiftwidth=2
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set expandtab
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set autoindent
-        au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set fileformat=unix
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set tabstop=2
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set softtabstop=2
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set shiftwidth=2
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set expandtab
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set autoindent
+        " au BufNewFile,BufRead *.html,*.js,*.vue,*.ts set fileformat=unix
 
         autocmd FileType typescript setlocal et sta sw=2 sts=2
         autocmd FileType javascriptreact setlocal et sta sw=2 sts=2

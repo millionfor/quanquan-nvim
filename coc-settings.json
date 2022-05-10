@@ -8,6 +8,7 @@
     "snippets.extends.javascript": ["typescript"],
     "snippets.extends.vue": ["javascript", "sass", "css", "html"],
     "snippets.extends.sass": ["css", "sass"],
+    "snippets.extends.scss": ["css", "sass"],
     "diagnostic.infoSign": "!",
     "diagnostic.hintSign": "!",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",

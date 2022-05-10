@@ -49,7 +49,10 @@
             Plug 'mattn/vim-gist'
         " 压缩
             Plug 'Shadowsith/vim-minify'
-
+        " 注释
+            Plug 'tpope/vim-commentary'
+            Plug 'Shougo/context_filetype.vim'
+            Plug 'tyru/caw.vim'
 
     call plug#end()
 " Plug Setting
@@ -252,11 +255,11 @@
             nnoremap <silent>   <c-t> :call FTToggle('TERM', '', "try \| call system('~/scripts/edit-profile.sh VIM_TEM_DIR " . $PWD . "') \| endtry")<cr>
             nnoremap <silent>   <c-b> :call FTToggle('DBUI', 'nvim +CALLDB', '')<cr>
             nnoremap <silent>   F     :call FTToggle('RANGER', 'ranger', '')<cr>
-            nnoremap <silent>   G     :call FTToggle('LAZYGIT', 'lazygit', '')<cr>
+            nnoremap <silent>   L     :call FTToggle('LAZYGIT', 'lazygit', '')<cr>
             tmap <silent><expr> <c-t> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('TERM') == bufnr('%') ? '' : '<c-t>') : "<c-t>"
             tmap <silent><expr> <c-b> &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('DBUI') == bufnr('%') ? '' : '<c-b>') : "<c-b>"
             tmap <silent><expr> F     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('RANGER') == bufnr('%') ? '' : 'F') : "F"
-            tmap <silent><expr> G     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('LAZYGIT') == bufnr('%') ? '' : 'G') : "G"
+            tmap <silent><expr> L     &ft == "floaterm" ? printf('<c-\><c-n>:FloatermHide<cr>%s', floaterm#terminal#get_bufnr('LAZYGIT') == bufnr('%') ? '' : 'L') : "L"
 
     " fzf
         " maps
@@ -386,6 +389,9 @@
             nnoremap <silent> ??           :NToggleComment<cr>
             vnoremap <silent> /       :<c-u>VToggleComment<cr>
             vnoremap <silent> ?       :<c-u>CToggleComment<cr>
+
+autocmd FileType apache setlocal commentstring=#\ %s
+
 
 " some hook
 " cd ~/.config/coc/extensions/node_modules/coc-ccls
