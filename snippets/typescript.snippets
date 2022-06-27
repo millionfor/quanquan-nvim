@@ -1,12 +1,16 @@
 extends javascript
 
-
 snippet iiei "interface xxx extends xxx {  }"
 	interface IProps${2} extends I${1} {
 	  ${0}
 	}
 
-snippet itf "interface IProps"
+snippet eii "export interface IProps"
+	export interface IProps${0} {
+	  ${1}
+	}
+
+snippet ii "interface IProps"
 	interface IProps${0} {
 	  ${1}
 	}

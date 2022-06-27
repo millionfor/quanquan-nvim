@@ -117,3 +117,5 @@ set langmenu=en_US.UTF-8
 
         let g:syntastic_javascript_checkers = ['eslint']
 
+        vmap "+y :w !pbcopy<CR><CR>
+        nmap "+p :r !pbpaste<CR><CR>

@@ -1,5 +1,5 @@
-autocmd BufNewFile *.vue,*.js,*.ts,*.sh,*.css call SetTitle()
-autocmd BufWritePre *.vue,*.js,*.ts,*.sh,*.css call SetLastModified()
+autocmd BufNewFile *.vue,*.js,*.ts,*.css call SetTitle()
+autocmd BufWritePre *.vue,*.js,*.ts,*.css call SetLastModified()
 
 let s:getCreatedTimeStr =  {->printf(' * @CreatedTime     %s', strftime("%a, %b %d, %Y %R"))}
 let s:getModifiedTimeStr = {->printf(' * @LastModified    %s', strftime("%a, %b %d, %Y %R"))}

@@ -11,6 +11,9 @@
             Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm i'  }
             Plug 'neoclide/coc.nvim', {'branch': 'release'}
             Plug 'voldikss/vim-floaterm' 
+        " 翻译
+            Plug 'VincentCordobes/vim-translate'
+
             Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
             Plug 'junegunn/fzf.vim'
             Plug 'yaocccc/vim-lines'
@@ -33,7 +36,9 @@
             Plug 'yaocccc/vim-hlchunk'
         " 注释插件
             Plug 'scrooloose/nerdcommenter'
-            
+        " typescript-vim
+            " Plug 'leafgarland/typescript-vim'
+           
         " jsx 支持    
             Plug 'HerringtonDarkholme/yats.vim'
             " or Plug 'leafgarland/typescript-vim'
@@ -44,23 +49,50 @@
             " Treesitter
             Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
             Plug 'nvim-treesitter/playground'
-        " gist vim
-            Plug 'mattn/webapi-vim'
-            Plug 'mattn/vim-gist'
         " 压缩
             Plug 'Shadowsith/vim-minify'
         " 注释
             Plug 'tpope/vim-commentary'
             Plug 'Shougo/context_filetype.vim'
             Plug 'tyru/caw.vim'
+        " post install (yarn install | npm install) then load plugin only for editing supported files
+            Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 
+            " Plug 'prettier/vim-prettier', {
+            "   \ 'do': 'yarn install --frozen-lockfile --production',
+            "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+    
     call plug#end()
+
 " Plug Setting
+            let g:translate#default_languages = {
+                  \ 'zh-CN': 'en',
+                  \ 'en': 'zh-CN'
+                  \ }
+            vnoremap <silent> M :TranslateVisual<CR>
+            vnoremap <silent> mm :TranslateReplace<CR>
+        " when running at every change you may want to disable quickfix
+            " let g:prettier#quickfix_enabled = 0
+            " autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+            let g:prettier#autoformat = 1
+            let g:prettier#autoformat_require_pragma = 0
+
+            :nnoremap <F3> :PrettierAsync <cr>
+
+            " 字符串使用单引号
+            " 尾逗号
+            " 末尾使用分号
+            let g:prettier#autoformat_config_files = ["~/.prettierrc"]
+            let g:prettier#exec_cmd_path = "/usr/local/bin/prettier"
+
+
+
     " github/copilot.vim
             " let g:copilot_no_tab_map = v:true
             " imap <silent><script><expr> <C-e> copilot#Accept('\<CR>')
             let g:copilot_no_tab_map = v:true
             imap <silent><script><expr> <Right> copilot#Accept("\<Right>")
+
     " scrooloose/nerdcommenter
               " Create default mappings
             let g:NERDCreateDefaultMappings = 1
@@ -88,11 +120,6 @@
 
             " Enable NERDCommenterToggle to check all selected lines is commented or not 
             let g:NERDToggleCheckAllLines = 1
-    " gist vim
-            let g:gist_clip_command = 'pbcopy'
-            let g:github_user = 'millionfor'
-            let g:gist_token = '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'
-            let g:gist_per_page_limit = 100
 
             vnoremap <leader>c :OSCYank<CR>
             let g:oscyank_max_length = 1000000
@@ -131,7 +158,7 @@
     " scrooloose/nerdtree 设置目录树
             "NERDTree快捷键
             :nnoremap <F1> :NERDTree <cr>
-            " 按<F2>打开或关闭文件目录树
+            " 按<F1>打开或关闭文件目录树
             :nnoremap <F1> :NERDTreeToggle<cr>
 
             " 鼠标操作点击打开隐藏文件夹
@@ -179,7 +206,7 @@
                 \ 'coc-db',
                 \ 'coc-pairs', 'coc-snippets', 'coc-tabnine',
                 \ 'coc-word',  'coc-markdownlint',
-                \ 'coc-translator', 'coc-explorer', 'coc-git'
+                \ 'coc-explorer', 'coc-git'
                 \ ]
         " maps
             nmap     <silent>       <F2>      <Plug>(coc-rename)
@@ -189,15 +216,20 @@
             nmap     <silent>       gr        <Plug>(coc-references)
             nmap     <silent>       K         :call CocAction("doHover")<cr>
             nmap     <silent>       <c-e>     :<c-u>CocList diagnostics<cr>
+            " gist.create
+            nmap     <silent>       gc     :<c-u>CocCommand gist.create<cr>
+            " gist.update
+            nmap     <silent>       gu     :<c-u>CocCommand gist.update<cr>
+
             nnoremap <silent>       <F9>      :CocCommand snippets.editSnippets<cr>
-            nnoremap <silent>       <F3>      :silent CocRestart<cr>
-            nnoremap <silent><expr> <F4>      get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
+            " nnoremap <silent>       <F3>      :silent CocRestart<cr>
+            " nnoremap <silent><expr> <F4>      get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
             inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : col('.') == 1 \|\| getline('.')[col('.') - 2] =~# '\s' ? "\<TAB>" : coc#refresh()
             inoremap <silent><expr> <s-tab>   pumvisible() ? "\<c-p>" : "\<s-tab>"
             inoremap <silent><expr> <cr>      pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
         " coc-translator
-            nmap     <silent>       mm        <Plug>(coc-translator-p)
-            vmap     <silent>       mm        <Plug>(coc-translator-pv)
+            " nmap     <silent>       M        <Plug>(coc-translator-p)
+            " vmap     <silent>       M        <Plug>(coc-translator-pv)
         " coc-git
             nmap     <silent>       (         <Plug>(coc-git-prevchunk)
             nmap     <silent>       )         <Plug>(coc-git-nextchunk)
