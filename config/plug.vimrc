@@ -22,9 +22,9 @@
             Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
             Plug 'posva/vim-vue', { 'for': ['vue' ] }
             Plug 'scrooloose/syntastic'
-            Plug 'tpope/vim-dadbod'
-            Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
-            Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+            " Plug 'tpope/vim-dadbod'
+            " Plug 'kristijanhusak/vim-dadbod-ui', { 'on': ['DBUI'] }
+            " Plug 'ojroques/vim-oscyank', {'branch': 'main'}
         " vim 入口封面
             Plug 'mhinz/vim-startify'
         " NERDTree左侧树形目录
@@ -72,9 +72,9 @@
             vnoremap <silent> M :TranslateVisual<CR>
             vnoremap <silent> mm :TranslateReplace<CR>
         " when running at every change you may want to disable quickfix
-            " let g:prettier#quickfix_enabled = 0
+            let g:prettier#quickfix_enabled = 1
             " autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
-            let g:prettier#autoformat = 1
+            let g:prettier#autoformat = 0
             let g:prettier#autoformat_require_pragma = 0
 
             :nnoremap <F3> :PrettierAsync <cr>
@@ -121,10 +121,10 @@
             " Enable NERDCommenterToggle to check all selected lines is commented or not 
             let g:NERDToggleCheckAllLines = 1
 
-            vnoremap <leader>c :OSCYank<CR>
-            let g:oscyank_max_length = 1000000
-            autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
-            autocmd TextYankPost * if v:event.operator is 'p' && v:event.regname is '+' | OSCYankReg + | endif
+            " vnoremap <leader>c :OSCYank<CR>
+            " let g:oscyank_max_length = 1000000
+            " autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+            " autocmd TextYankPost * if v:event.operator is 'p' && v:event.regname is '+' | OSCYankReg + | endif
 
             autocmd FileType vue syntax sync fromstart
             " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
@@ -309,33 +309,33 @@
         " vim-dadbod
             " ctrl b 打开或者关闭数据库
             " let g:dbs = [{ 'name': 'connection_name', 'url': 'mysql://user:password@host:port' }]
-            let g:db_ui_save_location = '~/.config/zsh/cache'
-            let g:db_ui_use_nerd_fonts = 1
-            let g:db_ui_force_echo_notifications = 1
-            let g:db_ui_table_helpers = {
-                  \   'mysql': {
-                  \     'List': 'SELECT * from `{schema}`.`{table}` order by id desc LIMIT 100;',
-                  \     'Indexes': 'SHOW INDEXES FROM `{schema}`.`{table}`;',
-                  \     'Table Fields': 'DESCRIBE `{schema}`.`{table}`;',
-                  \     'Alter Table': 'ALTER TABLE `{schema}`.`{table}` ADD '
-                  \   }
-                  \ }
-            let g:db_ui_locked = 0
-            com! CALLDB call DBUI()
-            func DBUI()
-              let g:db_ui_locked = 1
-              set laststatus=0 showtabline=0 nonu signcolumn=no nofoldenable
-              exec 'DBUI'
-            endf
-            func DBUIToggle()
-              if floaterm#terminal#get_bufnr('DBUI') < 0
-                exec 'FloatermNew --height=0.76 --position=bottom --name=DBUI --wintype=float nvim +CALLDB'
-              else
-                exec 'FloatermToggle DBUI'
-              endif
-            endf
-            nnoremap <silent><expr> <c-b> g:db_ui_locked ? "" : ":call DBUIToggle()<CR>"
-            tnoremap <silent><expr> <c-b> &ft == "floaterm" ? "<c-\><c-n>:call DBUIToggle()<CR>" : "<c-b>"
+            " let g:db_ui_save_location = '~/.config/zsh/cache'
+            " let g:db_ui_use_nerd_fonts = 1
+            " let g:db_ui_force_echo_notifications = 1
+            " let g:db_ui_table_helpers = {
+            "       \   'mysql': {
+            "       \     'List': 'SELECT * from `{schema}`.`{table}` order by id desc LIMIT 100;',
+            "       \     'Indexes': 'SHOW INDEXES FROM `{schema}`.`{table}`;',
+            "       \     'Table Fields': 'DESCRIBE `{schema}`.`{table}`;',
+            "       \     'Alter Table': 'ALTER TABLE `{schema}`.`{table}` ADD '
+            "       \   }
+            "       \ }
+            " let g:db_ui_locked = 0
+            " com! CALLDB call DBUI()
+            " func DBUI()
+            "   let g:db_ui_locked = 1
+            "   set laststatus=0 showtabline=0 nonu signcolumn=no nofoldenable
+            "   exec 'DBUI'
+            " endf
+            " func DBUIToggle()
+            "   if floaterm#terminal#get_bufnr('DBUI') < 0
+            "     exec 'FloatermNew --height=0.76 --position=bottom --name=DBUI --wintype=float nvim +CALLDB'
+            "   else
+            "     exec 'FloatermToggle DBUI'
+            "   endif
+            " endf
+            " nnoremap <silent><expr> <c-b> g:db_ui_locked ? "" : ":call DBUIToggle()<CR>"
+            " tnoremap <silent><expr> <c-b> &ft == "floaterm" ? "<c-\><c-n>:call DBUIToggle()<CR>" : "<c-b>"
 
 
 

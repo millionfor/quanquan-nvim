@@ -1,6 +1,9 @@
 {
   "diagnostic.signOffset": 1,
   "translator.toLang": "zh_CN",
+  "imselect.defaultInput": "com.apple.keylayout.ABC",
+  "imselect.enableStatusItem": true,
+  "imselect.enableFloating": false,
   "translator.engines": ["google"],
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "!",
