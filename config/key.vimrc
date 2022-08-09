@@ -1,5 +1,5 @@
 " common
-    " 设置文件对比
+      " 设置文件对比
         nnoremap <silent>       <F8>      :DiffOrig<cr>
     " 设置s t 无效 ;=: ,重复上一次宏操作
         map      s <nop>
@@ -32,6 +32,8 @@
         nnoremap          x          "_x
         vnoremap          x          "_x
         nnoremap          Y           y$
+        " vnoremap          y          y`>
+        vnoremap <silent> y          <esc>:<c-u>let _pos = getcurpos()<cr>gvy:call setpos(".", _pos)<cr>
         vnoremap          c          "_c
         vnoremap <silent> p          :<c-u>exe col("'>") == col("$") && SelectedIsLines() == 0 ? 'norm! gv"_dp' : 'norm! gv"_dP'<cr>
         vnoremap <silent> P          "_dP

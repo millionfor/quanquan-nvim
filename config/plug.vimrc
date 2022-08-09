@@ -33,7 +33,7 @@
             Plug 'ryanoasis/vim-devicons'
         " nerdtree 路径复制到剪切板
             Plug 'mortonfox/nerdtree-clip'
-            Plug 'yaocccc/vim-hlchunk'
+            Plug 'yaocccc/nvim-hlchunk'
         " 注释插件
             Plug 'scrooloose/nerdcommenter'
         " typescript-vim
@@ -57,6 +57,7 @@
             Plug 'tyru/caw.vim'
         " post install (yarn install | npm install) then load plugin only for editing supported files
             Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+
 
             " Plug 'prettier/vim-prettier', {
             "   \ 'do': 'yarn install --frozen-lockfile --production',
@@ -84,8 +85,6 @@
             " 末尾使用分号
             let g:prettier#autoformat_config_files = ["~/.prettierrc"]
             let g:prettier#exec_cmd_path = "/usr/local/bin/prettier"
-
-
 
     " github/copilot.vim
             " let g:copilot_no_tab_map = v:true
@@ -132,8 +131,8 @@
 
             au VimEnter * hi IndentLineSign ctermfg=248
 
-      " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
-            let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c,*.vue'
+          " 支持哪些文件 默认为 '*.ts,*.js,*.json,*.go,*.c'
+            let g:hlchunk_files = '*.ts,*.js,*.json,*.go,*.c,*.vue,*.html'
           " 缩进线的高亮
             au VimEnter * hi HLIndentLine ctermfg=244
           " 延时 默认为50
@@ -216,6 +215,8 @@
             nmap     <silent>       gr        <Plug>(coc-references)
             nmap     <silent>       K         :call CocAction("doHover")<cr>
             nmap     <silent>       <c-e>     :<c-u>CocList diagnostics<cr>
+            " gist list
+            nmap     <silent>       gl     :<c-u>CocList gist<cr>
             " gist.create
             nmap     <silent>       gc     :<c-u>CocCommand gist.create<cr>
             " gist.update
@@ -423,7 +424,6 @@
             vnoremap <silent> ?       :<c-u>CToggleComment<cr>
 
 autocmd FileType apache setlocal commentstring=#\ %s
-
 
 " some hook
 " cd ~/.config/coc/extensions/node_modules/coc-ccls
