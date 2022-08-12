@@ -231,9 +231,11 @@
             nnoremap <silent>       <F9>      :CocCommand snippets.editSnippets<cr>
             " nnoremap <silent>       <F3>      :silent CocRestart<cr>
             " nnoremap <silent><expr> <F4>      get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'
-            inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : col('.') == 1 \|\| getline('.')[col('.') - 2] =~# '\s' ? "\<TAB>" : coc#refresh()
-            inoremap <silent><expr> <s-tab>   pumvisible() ? "\<c-p>" : "\<s-tab>"
-            inoremap <silent><expr> <cr>      pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+ 
+            inoremap <silent><expr> <TAB>     coc#pum#visible() ? coc#pum#next(1) : col('.') == 1 \|\| getline('.')[col('.') - 2] =~# '\s' ? "\<TAB>" : coc#refresh()
+            inoremap <silent><expr> <s-tab>   coc#pum#visible() ? coc#pum#prev(1) : "\<s-tab>"
+            inoremap <silent><expr> <cr>      coc#pum#visible() ? coc#_select_confirm() : "\<c-g>u\<cr>"
+
         " coc-translator
             " nmap     <silent>       M        <Plug>(coc-translator-p)
             " vmap     <silent>       M        <Plug>(coc-translator-pv)
