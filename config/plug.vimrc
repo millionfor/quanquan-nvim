@@ -57,11 +57,6 @@
             Plug 'tyru/caw.vim'
         " post install (yarn install | npm install) then load plugin only for editing supported files
             Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
-
-
-            " Plug 'prettier/vim-prettier', {
-            "   \ 'do': 'yarn install --frozen-lockfile --production',
-            "   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
     
     call plug#end()
 
@@ -166,9 +161,9 @@
             let NERDTreeShowHidden = 2
     " vim-startify 封面设置
             "设置书签
-            let g:startify_bookmarks            = [
-            \ '~/Project/test.cpp',
-            \]
+            " let g:startify_bookmarks            = [
+            " \ '~/Project/test.cpp',
+            " \]
             "起始页显示的列表长度
             let g:startify_files_number = 14
             "自动加载session
@@ -190,6 +185,17 @@
             \'                                                            ░   ░            |          圈圈(@millionfor) <millionfor@apache.org> wwww.quanquansy.com          |',
             \'                                                             ░               +---------------------------------------------------------------------------------+',
             \]
+
+            " let g:startify_list_order = [
+            " \ ['   These are my bookmarks:'],
+            " \ 'bookmarks',
+            " \ ['   My most recently used files'],
+            " \ 'files',
+            " \ ['   My most recently used files in the current directory:'],
+            " \ 'dir',
+            " \ ['   These are my session和s:'],
+            " \ 'sessions',
+            " \]
 
     " coc-vim
         " 插件列表
@@ -284,6 +290,7 @@
                     exec a:pre_cmd
                     exec printf('FloatermNew --name=%s %s', a:name, a:cmd)
                 endif
+                echo $PWD
             endf
             nnoremap <silent>   <c-t> :call FTToggle('TERM', '', "try \| call system('~/scripts/edit-profile.sh VIM_TEM_DIR " . $PWD . "') \| endtry")<cr>
             nnoremap <silent>   <c-b> :call FTToggle('DBUI', 'nvim +CALLDB', '')<cr>
@@ -301,7 +308,7 @@
             let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
             com! -bar -bang Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter=: --nth=4..'}, 'right:45%', 'ctrl-/'), <bang>0)
             nnoremap <silent>       <c-a>     :Ag<cr>
-            nnoremap <silent>       <c-f>     :Files<cr>
+            nnoremap <silent>       <c-f>     :Files $PWD<cr>
             nnoremap <silent>       <c-h>     :History<cr>
             nnoremap <silent>       <c-l>     :BLines<cr>
             nnoremap <silent>       <c-g>     :GFiles?<cr>

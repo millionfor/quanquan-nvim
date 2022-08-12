@@ -28,6 +28,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.floating.border.title": "",
   "explorer.openAction.strategy": "sourceWindow",
+  "explorer.root.strategies": ["keep"],
   "explorer.presets.floating.position": "floating",
   "explorer.presets.floating.floating-width": 80,
   "explorer.presets.floating.floating-position": "center",
