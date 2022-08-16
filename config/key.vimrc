@@ -105,9 +105,9 @@
         nnoremap <m-r>      "_ciw
 
 " windows
-    " su 新左右窗口 suu 新上下窗口 sc关闭当前 so关闭其他 s方向切换
+    " su 新左右窗口 sp 新上下窗口 sc关闭当前 so关闭其他 s方向切换
         nnoremap su       :vsp<cr>
-        nnoremap suu       :sp<cr>
+        nnoremap sp       :sp<cr>
         nnoremap sc       :close<cr>
         nnoremap so       :only<cr>
         nnoremap s<Left>  <c-w>h
@@ -121,7 +121,7 @@
 
 " buffers
         nnoremap <silent> ss        :bn<cr>
-        nnoremap <silent> sp        :bp<cr>
+        " nnoremap <silent> sp        :bp<cr>
         nnoremap <silent> <m-left>  :bp<cr>
         nnoremap <silent> <m-right> :bn<cr>
         vnoremap <silent> <m-left>  <esc>:bp<cr>

@@ -2,7 +2,6 @@
   "diagnostic.signOffset": 1,
   "translator.toLang": "zh_CN",
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "imselect.enableStatusItem": true,
   "imselect.enableFloating": false,
   "translator.engines": ["google"],
   "diagnostic.errorSign": "\uf467",
@@ -24,11 +23,12 @@
   "markdownlint.config.line_length": false,
   "tsserver.trace.server": "messages",
   "tsserver.enableJavascript": true,
+  "explorer.root.strategies": ["workspace", "custom:vcs", "custom:vcs-r"],
+  "explorer.file.showHiddenFiles": true,
   "explorer.quitOnOpen": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.floating.border.title": "",
   "explorer.openAction.strategy": "sourceWindow",
-  "explorer.root.strategies": ["keep"],
   "explorer.presets.floating.position": "floating",
   "explorer.presets.floating.floating-width": 80,
   "explorer.presets.floating.floating-position": "center",
@@ -42,7 +42,16 @@
   "explorer.git.icon.status.untracked": "?",
   "explorer.git.icon.status.ignored": " ",
   "explorer.filename.colored.enable": false,
-  "explorer.git.showIgnored": false,
+  "explorer.git.showIgnored": true,
+  "explorer.root.customRules": {
+    "vcs": {
+      "patterns": [".git", ".hg", ".projections.json"]
+    },
+    "vcs-r": {
+      "patterns": [".git", ".hg", ".projections.json"],
+      "bottomUp": true
+    }
+  },
   "explorer.keyMappings.global.i": false,
   "explorer.keyMappings.global.<tab>": "toggleSelection",
   "explorer.keyMappings.global.<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
