@@ -23,8 +23,6 @@
   "markdownlint.config.line_length": false,
   "tsserver.trace.server": "messages",
   "tsserver.enableJavascript": true,
-  "explorer.root.strategies": ["workspace", "custom:vcs", "custom:vcs-r"],
-  "explorer.file.showHiddenFiles": true,
   "explorer.quitOnOpen": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.floating.border.title": "",
@@ -42,16 +40,7 @@
   "explorer.git.icon.status.untracked": "?",
   "explorer.git.icon.status.ignored": " ",
   "explorer.filename.colored.enable": false,
-  "explorer.git.showIgnored": true,
-  "explorer.root.customRules": {
-    "vcs": {
-      "patterns": [".git", ".hg", ".projections.json"]
-    },
-    "vcs-r": {
-      "patterns": [".git", ".hg", ".projections.json"],
-      "bottomUp": true
-    }
-  },
+  "explorer.git.showIgnored": false,
   "explorer.keyMappings.global.i": false,
   "explorer.keyMappings.global.<tab>": "toggleSelection",
   "explorer.keyMappings.global.<2-LeftMouse>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
@@ -62,7 +51,7 @@
   "explorer.keyMappings.global.l": ["expandable?", "expand", "open"],
   "explorer.keyMappings.global.J": ["toggleSelection", "nodeNext"],
   "explorer.keyMappings.global.K": ["toggleSelection", "nodePrev"],
-  "explorer.keyMappings.global.o": ["expandable?", "cd", "open"],
+  "explorer.keyMappings.global.o": ["wait", "expanded?", "collapse", "expand"],
   "explorer.keyMappings.global.<bs>": "gotoParent",
   "explorer.keyMappings.global.q": "quit",
   "explorer.keyMappings.global.Q": "quit",
