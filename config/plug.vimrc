@@ -159,6 +159,20 @@
             let NERDTreeMouseMode = 2
             " 显示隐藏文件 
             let NERDTreeShowHidden = 2
+            " 开启NERDTree后进入vim如何默认光标在右侧文件编辑区
+              autocmd VimEnter *
+              \   if !argc()
+              \ |   Startify
+              \ |   NERDTree
+              \ |   wincmd w
+              \ | endif
+
+            autocmd StdinReadPre * let s:std_in=1
+            autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+            " 只有一个文件 自动退出NERDTree
+             autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+
     " vim-startify 封面设置
             "设置书签
             " let g:startify_bookmarks            = [
@@ -273,8 +287,6 @@
             nnoremap <silent>       FF        :call UncolorAllWords()<cr>
             nnoremap <silent>       n         :call WordNavigation('forward')<cr>
             nnoremap <silent>       N         :call WordNavigation('backward')<cr>
-
-    " Floaterm
 
     " floaterm
             au BufEnter * if &buftype == 'terminal' | :call timer_start(50, { -> execute('startinsert!') }, { 'repeat': 5 }) | endif

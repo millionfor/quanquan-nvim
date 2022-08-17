@@ -128,13 +128,8 @@
         vnoremap <silent> <m-right> <esc>:bn<cr>
         inoremap <silent> <m-left>  <esc>:bp<cr>
         inoremap <silent> <m-right> <esc>:bn<cr>
-        nnoremap <silent><expr> W   ":bd \|call SetTabline()<cr>"
-        nnoremap <silent><expr> sd   ":bd \|call SetTabline()<cr>"
-
-        fun! s:SetTabline()
-          exec "w"
-        endf
-
+        nnoremap <silent><expr> W   ":bd<cr>"
+        nnoremap <silent><expr> sd   ":bd<cr>"
 
 " 一键运行文件
     command! Run  call <SID>runFile()
